@@ -1,0 +1,50 @@
+{
+  "name": "vue-select-image",
+  "description": "Vue 2 Component for selecting image from list",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Irfan Maulana (https://github.com/mazipan/)",
+  "homepage": "https://mazipan.github.io/vue-select-image/",
+  "main": "./dist/VueCurrencyFilter.bundle.js",
+  "keywords": [
+    "vue select image",
+    "vue image picker",
+    "vue image select",
+    "vue 2 component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mazipan/vue-select-image.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mazipan/vue-select-image/issues"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "scripts": {
+    "dev": "webpack --config webpack.dev.config.js",
+    "dist": "npm run dev && webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "compression": "^1.7.0",
+    "compression-webpack-plugin": "^1.0.0",
+    "es6-promise": "^4.1.1",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "html-webpack-plugin": "^2.30.1",
+    "vue": "^2.4.2",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.5.6",
+    "webpack-merge": "^4.1.0",
+    "webpack-shell-plugin": "^0.5.0"
+  }
+}
