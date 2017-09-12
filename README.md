@@ -18,17 +18,18 @@ Vue 2 Component for selecting image from list
 `npm i vue-select-image --save-dev`
 
 ### How to use
-> Import
+
+#### Import
 ```javascript
 import VueSelectImage from 'VueSelectImage'
 ```
 
-> Add components
+#### Add components
 ```javascript
 components: { VueSelectImage }
 ```
 
-> Array Image
+#### Array Image
 ```javascript
 [{
   id: '1',
@@ -41,7 +42,7 @@ components: { VueSelectImage }
 }]
 ```
 
-> Template
+#### Template
 ```html
 <vue-select-image :dataImages="dataImages" @onSelectImage="onSelectImage"></vue-select-image>
 ```
