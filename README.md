@@ -7,6 +7,12 @@
 
 Vue 2 Component for selecting image from list
 
+### Demo
+[https://mazipan.github.io/vue-select-image/](https://mazipan.github.io/vue-select-image/)
+
+### How to use
+
+
 ### Credit
 Thanks for inspiration : [https://github.com/rvera/image-picker](https://github.com/rvera/image-picker)
 
