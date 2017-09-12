@@ -10,9 +10,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist',
-    filename: 'dev.bundle.js',
-    jsonpFunction: 'WebpackJsonp'
+    publicPath: '/vue-select-image',
+    filename: 'dev.bundle.js'
   },
   resolve: {
     extensions: ['.js'],
@@ -20,7 +19,10 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js'
     }
   },
-  devtool: '#source-map',
+  performance: {
+    hints: false
+  },
+  devtool: '#eval-source-map',
   module: {
     rules: [
       {
@@ -30,14 +32,19 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true,
+    quiet: true,
+    compress: true,
+    port: 4000,
+    publicPath: "/vue-select-image/dist/",
+    open: true,
+    openPage: 'vue-select-image'
+  },
   externals: {
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': '"production"'
-      }
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
