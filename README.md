@@ -10,8 +10,41 @@ Vue 2 Component for selecting image from list
 ### Demo
 [https://mazipan.github.io/vue-select-image/](https://mazipan.github.io/vue-select-image/)
 
-### How to use
+### Installation
+> Yarn
+`yarn add vue-select-image`
 
+> NPM
+`npm i vue-select-image --save-dev`
+
+### How to use
+> Import
+```javascript
+import VueSelectImage from 'VueSelectImage'
+```
+
+> Add components
+```javascript
+components: { VueSelectImage }
+```
+
+> Array Image
+```javascript
+[{
+  id: '1',
+  src: 'https://unsplash.it/200?random',
+  alt: 'Alt Image 1'
+}, {
+  id: '2',
+  src: 'https://unsplash.it/200?random',
+  alt: 'Alt Image 2'
+}]
+```
+
+> Template
+```html
+<vue-select-image :dataImages="dataImages" @onSelectImage="onSelectImage"></vue-select-image>
+```
 
 ### Credit
 Thanks for inspiration : [https://github.com/rvera/image-picker](https://github.com/rvera/image-picker)
