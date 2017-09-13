@@ -8,9 +8,10 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --color --open",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "dist": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.config.dist.js",
+    "pack": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.config.dist.js",
     "lint": "./node_modules/.bin/eslint --ext .js,.vue src test/*.js",
-    "test": "./node_modules/.bin/jest --coverage"
+    "test": "./node_modules/.bin/jest --coverage",
+    "dist": "npm run lint && npm run build && npm run pack"
   },
   "main": "dist/vue-select-image.js",
   "files": [
