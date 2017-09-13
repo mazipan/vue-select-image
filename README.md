@@ -11,10 +11,10 @@ Vue 2 Component for selecting image from list
 [https://mazipan.github.io/vue-select-image/](https://mazipan.github.io/vue-select-image/)
 
 ### Installation
-> Yarn
+#### Yarn
 `yarn add vue-select-image`
 
-> NPM
+#### NPM
 `npm i vue-select-image --save-dev`
 
 ### How to use
@@ -43,9 +43,23 @@ components: { VueSelectImage }
 ```
 
 #### Template
+
+##### Single Selection
 ```html
-<vue-select-image :dataImages="dataImages" @onSelectImage="onSelectImage"></vue-select-image>
+<vue-select-image :dataImages="dataImages" 
+                  @onSelectImage="onSelectImage">
+</vue-select-image>
 ```
+`onSelectImage` will return emitted with parameter object image selected
+
+##### Multiple Selection
+```html
+<vue-select-image :dataImages="dataImages" 
+                  :is-multiple="true" 
+                  @onSelectMultipleImage="onSelectMultipleImage">
+</vue-select-image>
+```
+`onSelectMultipleImage` will return emitted with parameter list of object images selected
 
 ### Credit
 Thanks for inspiration : [https://github.com/rvera/image-picker](https://github.com/rvera/image-picker)
