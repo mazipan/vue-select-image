@@ -36,7 +36,6 @@ export default {
       this.imageSelected = Object.assign({}, this.imageSelected, data)
     },
     onSelectMultipleImage: function (data) {
-      console.log(data)
       this.imageMultipleSelected = data
     }
   }
