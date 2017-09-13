@@ -11,6 +11,7 @@ export default {
         src: '',
         alt: ''
       },
+      imageMultipleSelected: [],
       dataImages: [{
         id: '1',
         src: 'https://unsplash.it/200?random',
@@ -33,6 +34,10 @@ export default {
   methods: {
     onSelectImage: function (data) {
       this.imageSelected = Object.assign({}, this.imageSelected, data)
+    },
+    onSelectMultipleImage: function (data) {
+      console.log(data)
+      this.imageMultipleSelected = data
     }
   }
 }
