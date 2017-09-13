@@ -4,6 +4,12 @@
 [![GitHub Fork](https://img.shields.io/github/forks/mazipan/vue-select-image.svg?maxAge=3600)](https://github.com/mazipan/vue-select-image/network/member) 
 [![GitHub Star](https://img.shields.io/github/stars/mazipan/vue-select-image.svg?maxAge=3600)](https://github.com/mazipan/vue-select-image/stargazers) 
 
+[![version](https://img.shields.io/npm/v/vue-select-image.svg)](https://www.npmjs.com/package/vue-select-image)
+[![downloads monthly](https://img.shields.io/npm/dm/vue-select-image.svg)](https://www.npmjs.com/package/vue-select-image) 
+[![downloads](https://img.shields.io/npm/dt/vue-select-image.svg)](https://www.npmjs.com/package/vue-select-image) 
+
+[![Travis](https://img.shields.io/travis/mazipan/vue-select-image.svg)](https://travis-ci.org/mazipan/vue-select-image)
+[![codecov](https://codecov.io/gh/mazipan/vue-select-image/branch/master/graph/badge.svg)](https://codecov.io/gh/mazipan/vue-select-image)
 
 Vue 2 Component for selecting image from list
 
