@@ -19,6 +19,11 @@ describe('VueSelectImage.vue', () => {
     expect(wrapper.find('.VueSelectImage__item').length).toEqual(2)
   })
 
+  it('render with props multiple', () => {
+    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
+    expect(wrapper.find('.is--multiple').length).toEqual(2)
+  })
+
   it('emit onSelectImage event', () => {
     const wrapper = mount(VueSelectImage, { propsData: { dataImages }})
     const spy = jest.spyOn(wrapper.vm, '$emit')
@@ -31,5 +36,13 @@ describe('VueSelectImage.vue', () => {
     const wrapper = mount(VueSelectImage, { propsData: { dataImages }})
     wrapper.find('.VueSelectImage__thumbnail')[0].trigger('click')
     expect(wrapper.data().singleSelected).toEqual(dataImages[0])
+  })
+
+  it('emit onSelectMultipleImage event', () => {
+    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
+    const spy = jest.spyOn(wrapper.vm, '$emit')
+    wrapper.find('.VueSelectImage__thumbnail')[0].trigger('click')
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onSelectMultipleImage', [dataImages[0]])
   })
 })
