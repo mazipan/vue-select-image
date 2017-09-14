@@ -67,6 +67,12 @@ components: { VueSelectImage }
 ```
 `onSelectMultipleImage` will return emitted with parameter list of object images selected
 
+##### Code sample
+Code sample can be found here :
+
++ [App.vue](https://github.com/mazipan/vue-select-image/blob/master/src/App.vue)
++ [app.js](https://github.com/mazipan/vue-select-image/blob/master/src/app.js)
+
 ### Credit
 Thanks for inspiration : [https://github.com/rvera/image-picker](https://github.com/rvera/image-picker)
 
