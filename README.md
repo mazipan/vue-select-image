@@ -11,7 +11,7 @@
 [![Travis](https://img.shields.io/travis/mazipan/vue-select-image.svg)](https://travis-ci.org/mazipan/vue-select-image)
 [![codecov](https://codecov.io/gh/mazipan/vue-select-image/branch/master/graph/badge.svg)](https://codecov.io/gh/mazipan/vue-select-image)
 
-Vue 2 Component for selecting image from list
+:white_check_mark: Vue 2 Component for selecting image from list
 
 ### Demo
 [https://mazipan.github.io/vue-select-image/](https://mazipan.github.io/vue-select-image/)
