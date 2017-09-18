@@ -50,7 +50,7 @@ export default {
       imageMultipleSelected: [],
       dataImages: [{
         id: '1',
-        src: 'https://raw.githubusercontent.com/mazipan/vue-select-image/master/src/assets/logo-1.gif',
+        src: 'https://raw.githubusercontent.com/mazipan/vue-select-image/master/src/assets/logo-1.png',
         alt: 'jQuery'
       }, {
         id: '2',
