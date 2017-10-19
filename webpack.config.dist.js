@@ -1,6 +1,7 @@
-var path = require('path')
 var webpack = require('webpack')
-var npm = require('./package.json')
+var path = require('path')
+var npm = require("./package.json")
+const CompressionPlugin = require("compression-webpack-plugin")
 
 module.exports = {
   entry: './src/main-dist.js',
@@ -51,29 +52,24 @@ module.exports = {
   externals: {
     'vue': 'Vue'
   },
-  devtool: '#source-map'
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
+  devtool: '#source-map',
+  plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        'NODE_ENV': '"production"'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
       compress: {
         warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
+      },
+      sourceMap: false
     }),
     new webpack.BannerPlugin({
-      banner: `vue-select-image v.${npm.version}\nIrfan Maulana (https://github.com/mazipan)`
+      banner: `vue-select-image v.${npm.version}`
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip'
     })
-  ])
+  ]
 }
