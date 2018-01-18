@@ -1,41 +1,42 @@
-# vue-select-image
-[![License](https://img.shields.io/github/license/mazipan/vue-select-image.svg?maxAge=3600)](https://github.com/mazipan/vue-select-image) 
-[![Github Issue](https://img.shields.io/github/issues/mazipan/vue-select-image.svg?maxAge=3600)](https://github.com/mazipan/vue-select-image/issues) 
-[![GitHub Fork](https://img.shields.io/github/forks/mazipan/vue-select-image.svg?maxAge=3600)](https://github.com/mazipan/vue-select-image/network/member) 
-[![GitHub Star](https://img.shields.io/github/stars/mazipan/vue-select-image.svg?maxAge=3600)](https://github.com/mazipan/vue-select-image/stargazers) 
+# :white_check_mark: Vue Select Image
 
-[![version](https://img.shields.io/npm/v/vue-select-image.svg)](https://www.npmjs.com/package/vue-select-image)
-[![downloads monthly](https://img.shields.io/npm/dm/vue-select-image.svg)](https://www.npmjs.com/package/vue-select-image) 
-[![downloads](https://img.shields.io/npm/dt/vue-select-image.svg)](https://www.npmjs.com/package/vue-select-image) 
+> Vue 2.x component for selecting image from list
 
-[![Travis](https://img.shields.io/travis/mazipan/vue-select-image.svg)](https://travis-ci.org/mazipan/vue-select-image)
+[![License](https://img.shields.io/github/license/mazipan/vue-select-image.svg?maxAge=3600)](https://github.com/mazipan/vue-select-image) [![GitHub Star](https://img.shields.io/github/stars/mazipan/vue-select-image.svg?maxAge=3600)](https://github.com/mazipan/vue-select-image/stargazers) [![version](https://img.shields.io/npm/v/vue-select-image.svg)](https://www.npmjs.com/package/vue-select-image) 
+[![downloads](https://img.shields.io/npm/dt/vue-select-image.svg)](https://www.npmjs.com/package/vue-select-image) [![Travis](https://img.shields.io/travis/mazipan/vue-select-image.svg)](https://travis-ci.org/mazipan/vue-select-image)
 [![codecov](https://codecov.io/gh/mazipan/vue-select-image/branch/master/graph/badge.svg)](https://codecov.io/gh/mazipan/vue-select-image)
 
-:white_check_mark: Vue 2 Component for selecting image from list
 
 ### Demo
+
 [https://mazipan.github.io/vue-select-image/](https://mazipan.github.io/vue-select-image/)
 
 ### Installation
-#### Yarn
-`yarn add vue-select-image`
 
-#### NPM
-`npm i vue-select-image --save-dev`
+```bash
+# Yarn
+yarn add vue-select-image
+
+# NPM
+npm i vue-select-image --save
+```
 
 ### How to use
 
 #### Import
+
 ```javascript
 import VueSelectImage from 'VueSelectImage'
 ```
 
-#### Add components
+#### Register components
+
 ```javascript
 components: { VueSelectImage }
 ```
 
-#### Array Image
+#### Sample Array Image
+
 ```javascript
 [{
   id: '1',
@@ -51,6 +52,7 @@ components: { VueSelectImage }
 #### Template
 
 ##### Single Selection
+
 ```html
 <vue-select-image :dataImages="dataImages" 
                   @onSelectImage="onSelectImage">
@@ -59,6 +61,7 @@ components: { VueSelectImage }
 `onSelectImage` will return emitted with parameter object image selected
 
 ##### Multiple Selection
+
 ```html
 <vue-select-image :dataImages="dataImages" 
                   :is-multiple="true" 
@@ -67,13 +70,15 @@ components: { VueSelectImage }
 ```
 `onSelectMultipleImage` will return emitted with parameter list of object images selected
 
-##### Code sample
-Code sample can be found here :
+##### Example
 
-+ [App.vue](https://github.com/mazipan/vue-select-image/blob/master/src/App.vue)
-+ [app.js](https://github.com/mazipan/vue-select-image/blob/master/src/app.js)
+Example can be found here :
+
+- [App.vue](https://github.com/mazipan/vue-select-image/blob/master/src/App.vue)
+- [app.js](https://github.com/mazipan/vue-select-image/blob/master/src/app.js)
 
 ### Credit
+
 Thanks for inspiration : [https://github.com/rvera/image-picker](https://github.com/rvera/image-picker)
 
 ## Contributing
