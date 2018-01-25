@@ -1,12 +1,25 @@
 
 import VueSelectImage from './VueSelectImage.vue'
+import SocialGithubIcon  from 'icons/social-github.vue'
+import IosEmailIcon  from 'icons/ios-email.vue'
+import SocialFacebookIcon  from 'icons/social-facebook.vue'
+import SocialTwitterIcon  from 'icons/social-twitter.vue'
+import SocialLinkedinIcon  from 'icons/social-linkedin.vue'
 
 export default {
   name: 'app',
-  components: { VueSelectImage },
+  components: {
+    VueSelectImage,
+    SocialGithubIcon,
+    IosEmailIcon,
+    SocialFacebookIcon,
+    SocialTwitterIcon,
+    SocialLinkedinIcon
+  },
   data () {
     return {
-      msg: 'Vue Select Image By Irfan Maulana',
+      title: 'Vue Select Image',
+      subtitle: 'Vue 2.x component for selecting image from list',
       imageSelected: {
         id: '',
         src: '',

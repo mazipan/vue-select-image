@@ -1,26 +1,31 @@
 <template>
-  <div class="VueSelectImage">
-    <ul class="VueSelectImage__wrapper">
+  <div :class="rootClass">
+    <ul :class="rootClass + '__wrapper'">
 
       <li v-for="(dataImage, index) in dataImagesLocal" :key="index"
-        class="VueSelectImage__item">
+        :class="rootClass + '__item'">
 
-        <div class="VueSelectImage__thumbnail"
-            :class="{'VueSelectImage__thumbnail--selected': (singleSelected.id === dataImage.id)}"
-            @click="onSelectImage(dataImage)"
-            v-if="!isMultiple">
+        <div 
+          :class="classThumbnail(singleSelected.id, dataImage.id)"
+          @click="onSelectImage(dataImage)"
+          v-if="!isMultiple">
           <img :src="dataImage.src"
                :alt="dataImage.alt"
-               class="VueSelectImage__img">
+               :height="h"
+               :width="w"
+               :class="rootClass + '__img'">
         </div>
 
-        <div class="VueSelectImage__thumbnail is--multiple"
-            :class="{'VueSelectImage__thumbnail--selected': (dataImage.selected)}"
-            @click="onSelectMultipleImage(dataImage)"
-            v-if="isMultiple">
+        <div 
+          :class="classThumbnailMultiple(dataImage.selected)" 
+          @click="onSelectMultipleImage(dataImage)" 
+          v-if="isMultiple">
+
           <img :src="dataImage.src"
                :alt="dataImage.alt"
-               class="VueSelectImage__img">
+               :height="h"
+               :width="w"
+               :class="rootClass + '__img'">
         </div>
 
       </li>

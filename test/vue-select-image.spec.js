@@ -16,7 +16,7 @@ describe('VueSelectImage.vue', () => {
 
   it('render correct amount of images', () => {
     const wrapper = mount(VueSelectImage, { propsData: { dataImages }})
-    expect(wrapper.find('.VueSelectImage__item').length).toEqual(2)
+    expect(wrapper.find('.vue-select-image__item').length).toEqual(2)
   })
 
   it('render with props multiple', () => {
@@ -24,25 +24,25 @@ describe('VueSelectImage.vue', () => {
     expect(wrapper.find('.is--multiple').length).toEqual(2)
   })
 
-  it('emit onSelectImage event', () => {
+  it('emit onselectimage event', () => {
     const wrapper = mount(VueSelectImage, { propsData: { dataImages }})
     const spy = jest.spyOn(wrapper.vm, '$emit')
-    wrapper.find('.VueSelectImage__thumbnail')[0].trigger('click')
+    wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
     expect(spy).toHaveBeenCalled()
-    expect(spy).toBeCalledWith('onSelectImage', dataImages[0])
+    expect(spy).toBeCalledWith('onselectimage', dataImages[0])
   })
 
   it('assign singleSelected data', () => {
     const wrapper = mount(VueSelectImage, { propsData: { dataImages }})
-    wrapper.find('.VueSelectImage__thumbnail')[0].trigger('click')
+    wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
     expect(wrapper.data().singleSelected).toEqual(dataImages[0])
   })
 
-  it('emit onSelectMultipleImage event', () => {
+  it('emit onselectmultipleimage event', () => {
     const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
     const spy = jest.spyOn(wrapper.vm, '$emit')
-    wrapper.find('.VueSelectImage__thumbnail')[0].trigger('click')
+    wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
     expect(spy).toHaveBeenCalled()
-    expect(spy).toBeCalledWith('onSelectMultipleImage', [dataImages[0]])
+    expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[0]])
   })
 })
