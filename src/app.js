@@ -34,9 +34,11 @@ export default {
   },
   methods: {
     onSelectImage: function (data) {
+      console.log('fire event onSelectImage: ', data)
       this.imageSelected = Object.assign({}, this.imageSelected, data)
     },
     onSelectMultipleImage: function (data) {
+      console.log('fire event onSelectMultipleImage: ', data)
       this.imageMultipleSelected = data
     }
   }

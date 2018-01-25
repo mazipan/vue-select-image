@@ -26,7 +26,7 @@ export default {
   methods: {
     onSelectImage: function (objectImage) {
       this.singleSelected = Object.assign({}, this.singleSelected, objectImage)
-      this.$emit('onSelectImage', objectImage)
+      this.$emit('onselectimage', objectImage)
     },
     onSelectMultipleImage: function (objectImage) {
       this.dataImagesLocal = this.dataImagesLocal.map((item) => {
@@ -38,7 +38,7 @@ export default {
       this.multipleSelected = this.dataImagesLocal.filter((item) => {
         return !!item.selected
       })
-      this.$emit('onSelectMultipleImage', this.multipleSelected)
+      this.$emit('onselectmultipleimage', this.multipleSelected)
     }
   }
 }

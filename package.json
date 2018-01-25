@@ -1,7 +1,7 @@
 {
   "name": "vue-select-image",
   "description": "Vue 2 Component for selecting image from list",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "author": "Irfan Maulana (https://github.com/mazipan/)",
   "private": false,
@@ -11,7 +11,7 @@
     "pack": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.config.dist.js",
     "lint": "./node_modules/.bin/eslint --ext .js,.vue src test/*.js",
     "test": "./node_modules/.bin/jest --coverage",
-    "dist": "npm run lint && npm run build && npm run pack"
+    "dist": "npm run build && npm run pack"
   },
   "main": "dist/vue-select-image.js",
   "files": [
@@ -34,27 +34,27 @@
     "vue2 image select"
   ],
   "dependencies": {
-    "vue": "^2.4.2"
+    "vue": "^2.5.13"
   },
   "devDependencies": {
-    "avoriaz": "^6.0.1",
+    "avoriaz": "^6.3.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "cross-env": "^5.1.0",
-    "css-loader": "^0.28.7",
-    "compression-webpack-plugin": "^1.0.1",
-    "eslint": "^4.9.0",
-    "eslint-plugin-vue": "3.13.0",
-    "file-loader": "^1.1.5",
-    "jest": "^21.2.1",
+    "cross-env": "^5.1.3",
+    "css-loader": "^0.28.9",
+    "compression-webpack-plugin": "^1.1.3",
+    "eslint": "^4.16.0",
+    "eslint-plugin-vue": "4.2.0",
+    "file-loader": "^1.1.6",
+    "jest": "^22.1.4",
     "jest-vue-preprocessor": "^1.3.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "vue-loader": "^13.0.4",
-    "vue-template-compiler": "^2.4.2",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.2"
+    "vue-loader": "^13.7.0",
+    "vue-template-compiler": "^2.5.13",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   },
   "babel": {
     "presets": [

@@ -5,32 +5,32 @@
     <div class="app">
       <h1>{{ msg }}</h1>
 
-      <div>      
-        <h2>Single Selection</h2>      
-        <vue-select-image :dataImages="dataImages" 
-                          @onSelectImage="onSelectImage">
+      <div>
+        <h2>Single Selection</h2>
+        <vue-select-image :dataImages="dataImages"
+                          @onselectimage="onSelectImage">
         </vue-select-image>
         <div>
-          <h5>Image Selected : 
+          <h5>Image Selected :
             <span v-if="imageSelected.id !== ''">
               <span>id = {{ imageSelected.id }}</span>
-            </span> 
-          </h5>            
+            </span>
+          </h5>
         </div>
       </div>
 
       <div>
         <h2>Multiple Selection</h2>
-        <vue-select-image :dataImages="dataImages" 
-                          :is-multiple="true" 
-                          @onSelectMultipleImage="onSelectMultipleImage">
+        <vue-select-image :dataImages="dataImages"
+                          :is-multiple="true"
+                          @onselectmultipleimage="onSelectMultipleImage">
         </vue-select-image>
         <div>
-          <h5>Mutiple Image Selected : 
+          <h5>Mutiple Image Selected :
             <span v-for="(imgSelected, index) in imageMultipleSelected" :key="index">
               <span>id = {{ imgSelected.id }}, </span>
             </span>
-          </h5> 
+          </h5>
         </div>
       </div>
     </div>
