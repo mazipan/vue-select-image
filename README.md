@@ -73,11 +73,11 @@ components: { VueSelectImage }
 
 ### Available Props
 
-- dataImages: type (Array), default ([])
-- isMultiple: type (Boolean), default (false)
-- rootClass: type (String), default ('vue-select-image')
-- h: type (String), default ('auto')
-- w: type (String), default ('auto')
+- **dataImages**: type (Array), default ([])
+- **isMultiple**: type (Boolean), default (false)
+- **rootClass**: type (String), default ('vue-select-image')
+- **h**: type (String), default ('auto')
+- **w**: type (String), default ('auto')
 
 ### Example
 
