@@ -71,6 +71,14 @@ components: { VueSelectImage }
 
 `onselectmultipleimage` will return emitted with parameter list of object images selected
 
+### Available Props
+
+- dataImages: type (Array), default ([])
+- isMultiple: type (Boolean), default (false)
+- rootClass: type (String), default ('vue-select-image')
+- h: type (String), default ('auto')
+- w: type (String), default ('auto')
+
 ### Example
 
 Example can be found here :
