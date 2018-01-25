@@ -1,5 +1,4 @@
 /* eslint-env jest */
-
 import { mount } from 'avoriaz'
 import VueSelectImage from '../src/VueSelectImage.vue'
 
@@ -22,6 +21,14 @@ describe('VueSelectImage.vue', () => {
   it('render with props multiple', () => {
     const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
     expect(wrapper.find('.is--multiple').length).toEqual(2)
+  })
+
+  it('render with props rootClass, h, and w', () => {
+    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, rootClass: 'a', w: '1em', h: '1em' }})
+    expect(wrapper.find('.a').length).toEqual(1)
+    expect(wrapper.find('.a__img').length).toEqual(2)
+    expect(wrapper.find('[width="1em"]').length).toEqual(2)
+    expect(wrapper.find('[height="1em"]').length).toEqual(2)
   })
 
   it('emit onselectimage event', () => {
