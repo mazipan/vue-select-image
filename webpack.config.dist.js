@@ -1,7 +1,10 @@
 var webpack = require('webpack')
 var path = require('path')
 var npm = require("./package.json")
-const CompressionPlugin = require("compression-webpack-plugin")
+
+const CompressionPlugin = require("compression-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: './src/main-dist.js',
@@ -21,13 +24,19 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-            // the "scss" and "sass" values for the lang attribute to the right configs here.
-            // other preprocessors should work out of the box, no loader config like this necessary.
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+            css: ExtractTextPlugin.extract({
+              use: 'css-loader',
+              fallback: 'vue-style-loader'
+            }),
+            scss: ExtractTextPlugin.extract({
+              use: 'css-loader!sass-loader',
+              fallback: 'vue-style-loader'
+            }),
+            sass: ExtractTextPlugin.extract({
+              use: 'css-loader!sass-loader?indentedSyntax',
+              fallback: 'vue-style-loader'
+            })
           }
-          // other vue-loader options go here
         }
       },
       {
@@ -51,13 +60,22 @@ module.exports = {
     }
   },
   externals: {
-    'vue': 'Vue'
+    'vue$': 'vue/dist/vue.esm.js'
   },
   devtool: '#source-map',
   plugins: [
+		new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': '"production"'
+      }
+    }),
+		new ExtractTextPlugin({
+			filename: 'vue-select-image.css'
+    }),
+    new OptimizeCSSPlugin({
+      cssProcessorOptions: {
+        safe: true
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

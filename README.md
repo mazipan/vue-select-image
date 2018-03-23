@@ -26,12 +26,21 @@ npm i vue-select-image --save
 
 ```javascript
 import VueSelectImage from 'vue-select-image'
+// add stylesheet
+require('vue-select-image/dist/vue-select-image.css')
 ```
 
 ### Register components
 
 ```javascript
 components: { VueSelectImage }
+```
+
+
+### Register as global component
+
+```javascript
+Vue.use(VueSelectImage)
 ```
 
 ### Sample Array Image
