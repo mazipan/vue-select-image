@@ -60,15 +60,16 @@ export default {
   },
   data () {
     return {
-      dataImagesLocal: [],
       singleSelected: {
         id: ''
       },
       multipleSelected: []
     }
   },
-  created () {
-    this.dataImagesLocal = this.dataImages
+  computed: {
+    dataImagesLocal: function () {
+      return this.dataImages || []
+    }
   },
   methods: {
     classThumbnail(selectedId, imageId) {
@@ -90,16 +91,16 @@ export default {
       this.singleSelected = Object.assign({}, this.singleSelected, objectImage)
       this.$emit('onselectimage', objectImage)
     },
-    onSelectMultipleImage(objectImage) {
-      this.dataImagesLocal = this.dataImagesLocal.map((item) => {
-        if (objectImage.id === item.id) {
-          item.selected = !item.selected
-        }
-        return item
-      });
-      this.multipleSelected = this.dataImagesLocal.filter((item) => {
-        return !!item.selected
+    isExistInArray (id) {
+      return this.multipleSelected.find((item) => {
+        return id === item.id
       })
+    },
+    onSelectMultipleImage(objectImage) {
+      if (!this.isExistInArray(objectImage.id)) {
+        this.multipleSelected.push(objectImage)
+      }
+
       this.$emit('onselectmultipleimage', this.multipleSelected)
     }
   }

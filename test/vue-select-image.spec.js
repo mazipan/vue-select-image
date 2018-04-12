@@ -52,4 +52,31 @@ describe('VueSelectImage.vue', () => {
     expect(spy).toHaveBeenCalled()
     expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[0]])
   })
+
+  it('test repeat click with same index', () => {
+    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
+    const spy = jest.spyOn(wrapper.vm, '$emit')
+    wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[0]])
+    // repeat click but same index
+    wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[0]])
+    // repeat click but same index
+    wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[0]])
+  })
+  it('test repeat click different index', () => {
+    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
+    const spy = jest.spyOn(wrapper.vm, '$emit')
+    wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[0]])
+    // repeat click different index
+    wrapper.find('.vue-select-image__thumbnail')[1].trigger('click')
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectmultipleimage', dataImages)
+  })
 })

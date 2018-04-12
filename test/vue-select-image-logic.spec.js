@@ -46,4 +46,39 @@ describe('test via extends Vue', () => {
     let result = vm.classThumbnailMultiple(false)
     expect(result).toEqual('vue-select-image__thumbnail is--multiple')
   })
+  it('emit onselectimage event', () => {
+    const spy = jest.spyOn(vm, '$emit')
+    vm.onSelectImage(dataImages[0])
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectimage', dataImages[0])
+  })
+  it('isExistInArray not exist', () => {
+    vm.multipleSelected = []
+    let result = vm.isExistInArray(1)
+    expect(result).toBeUndefined()
+  })
+  it('isExistInArray return exist', () => {
+    vm.multipleSelected = dataImages
+    let result = vm.isExistInArray('1')
+    expect(result).toEqual(dataImages[0])
+  })
+  it('emit onselectimage event', () => {
+    const spy = jest.spyOn(vm, '$emit')
+    vm.onSelectImage(dataImages[0])
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectimage', dataImages[0])
+  })
+  it('emit onselectmultipleimage event', () => {
+    const spy = jest.spyOn(vm, '$emit')
+    vm.onSelectMultipleImage(dataImages[0])
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[0]])
+  })
+  it('emit onselectmultipleimage was exist', () => {
+    vm.multipleSelected = dataImages
+    const spy = jest.spyOn(vm, '$emit')
+    vm.onSelectMultipleImage(dataImages[0])
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toBeCalledWith('onselectmultipleimage', dataImages)
+  })
 })
