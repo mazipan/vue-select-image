@@ -17,7 +17,7 @@
         </div>
 
         <div
-          :class="classThumbnailMultiple(dataImage.selected)"
+          :class="classThumbnailMultiple(dataImage.id)"
           @click="onSelectMultipleImage(dataImage)"
           v-if="isMultiple">
 
@@ -79,10 +79,10 @@ export default {
       }
       return `${baseClass}`
     },
-    classThumbnailMultiple(selected) {
+    classThumbnailMultiple(id) {
       const baseClass = `${this.rootClass}__thumbnail`
       const baseMultipleClass = `${baseClass} is--multiple`
-      if (selected) {
+      if (this.isExistInArray(id)) {
         return `${baseMultipleClass} ${baseClass}--selected`
       }
       return `${baseMultipleClass}`
@@ -96,9 +96,16 @@ export default {
         return id === item.id
       })
     },
+    removeSelected (id) {
+      return this.multipleSelected.filter((item) => {
+        return id !== item.id
+      })
+    },
     onSelectMultipleImage(objectImage) {
       if (!this.isExistInArray(objectImage.id)) {
         this.multipleSelected.push(objectImage)
+      } else {
+        this.multipleSelected = this.removeSelected(objectImage.id)
       }
 
       this.$emit('onselectmultipleimage', this.multipleSelected)

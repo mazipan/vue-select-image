@@ -39,11 +39,13 @@ describe('test via extends Vue', () => {
     expect(vm.h).toEqual('auto')
   })
   it('classThumbnailMultiple selected', () => {
-    let result = vm.classThumbnailMultiple(true)
+    vm.multipleSelected = dataImages
+    let result = vm.classThumbnailMultiple('1')
     expect(result).toEqual('vue-select-image__thumbnail is--multiple vue-select-image__thumbnail--selected')
   })
   it('classThumbnailMultiple not selected', () => {
-    let result = vm.classThumbnailMultiple(false)
+    vm.multipleSelected = []
+    let result = vm.classThumbnailMultiple('1')
     expect(result).toEqual('vue-select-image__thumbnail is--multiple')
   })
   it('emit onselectimage event', () => {
@@ -79,6 +81,6 @@ describe('test via extends Vue', () => {
     const spy = jest.spyOn(vm, '$emit')
     vm.onSelectMultipleImage(dataImages[0])
     expect(spy).toHaveBeenCalled()
-    expect(spy).toBeCalledWith('onselectmultipleimage', dataImages)
+    expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[1]])
   })
 })
