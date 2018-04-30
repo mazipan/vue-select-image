@@ -39,11 +39,11 @@ export default {
   props: {
     dataImages: {
       type: Array,
-      default: []
+      default: () => []
     },
     selectedImages: {
       type: Array,
-      default: []
+      default: () => []
     },
     isMultiple: {
       type: Boolean,
@@ -75,7 +75,7 @@ export default {
       return this.dataImages || []
     }
   },
-  mounted () {
+  created () {
     // set initial selectedImage
     this.setInitialSelection()
   },
@@ -123,7 +123,7 @@ export default {
         if (!this.isMultiple && this.selectedImages.length === 1) {
             this.singleSelected = Object.assign({}, this.selectedImages[0])
         } else {
-          this.multipleSelected = this.selectedImages
+          this.multipleSelected = [].concat(this.selectedImages)
         }
       }
     }

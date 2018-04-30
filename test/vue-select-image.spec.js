@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { mount } from 'avoriaz'
+import { shallow } from 'avoriaz'
 import VueSelectImage from '../src/VueSelectImage.vue'
 
 describe('VueSelectImage.vue', () => {
@@ -14,25 +14,31 @@ describe('VueSelectImage.vue', () => {
   }]
 
   it('render correct amount of images', () => {
-    const wrapper = mount(VueSelectImage, { propsData: { dataImages }})
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages }})
     expect(wrapper.find('.vue-select-image__item').length).toEqual(2)
   })
 
   it('render with props multiple', () => {
-    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
     expect(wrapper.find('.is--multiple').length).toEqual(2)
   })
 
   it('render with props rootClass, h, and w', () => {
-    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, rootClass: 'a', w: '1em', h: '1em' }})
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages: dataImages, rootClass: 'a', w: '1em', h: '1em' }})
     expect(wrapper.find('.a').length).toEqual(1)
     expect(wrapper.find('.a__img').length).toEqual(2)
     expect(wrapper.find('[width="1em"]').length).toEqual(2)
     expect(wrapper.find('[height="1em"]').length).toEqual(2)
   })
 
+  it('render with props selectedImages', () => {
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages: dataImages, selectedImages: dataImages, isMultiple: true }})
+    expect(wrapper.find('.vue-select-image__thumbnail').length).toEqual(2)
+    expect(wrapper.find('.vue-select-image__thumbnail--selected').length).toEqual(2)
+  })
+
   it('emit onselectimage event', () => {
-    const wrapper = mount(VueSelectImage, { propsData: { dataImages }})
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages }})
     const spy = jest.spyOn(wrapper.vm, '$emit')
     wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
     expect(spy).toHaveBeenCalled()
@@ -40,13 +46,13 @@ describe('VueSelectImage.vue', () => {
   })
 
   it('assign singleSelected data', () => {
-    const wrapper = mount(VueSelectImage, { propsData: { dataImages }})
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages }})
     wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
     expect(wrapper.data().singleSelected).toEqual(dataImages[0])
   })
 
   it('emit onselectmultipleimage event', () => {
-    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
     const spy = jest.spyOn(wrapper.vm, '$emit')
     wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
     expect(spy).toHaveBeenCalled()
@@ -54,7 +60,7 @@ describe('VueSelectImage.vue', () => {
   })
 
   it('test repeat click with same index', () => {
-    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
     const spy = jest.spyOn(wrapper.vm, '$emit')
     wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
     expect(spy).toHaveBeenCalled()
@@ -69,7 +75,7 @@ describe('VueSelectImage.vue', () => {
     expect(spy).toBeCalledWith('onselectmultipleimage', [dataImages[0]])
   })
   it('test repeat click different index', () => {
-    const wrapper = mount(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
+    const wrapper = shallow(VueSelectImage, { propsData: { dataImages: dataImages, isMultiple: true }})
     const spy = jest.spyOn(wrapper.vm, '$emit')
     wrapper.find('.vue-select-image__thumbnail')[0].trigger('click')
     expect(spy).toHaveBeenCalled()
