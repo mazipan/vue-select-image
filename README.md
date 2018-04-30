@@ -74,6 +74,7 @@ Vue.use(VueSelectImage)
 ```html
 <vue-select-image :dataImages="dataImages"
                   :is-multiple="true"
+                  :selectedImages="initialSelected"
                   @onselectmultipleimage="onSelectMultipleImage">
 </vue-select-image>
 ```
@@ -83,6 +84,7 @@ Vue.use(VueSelectImage)
 ### Available Props
 
 - **dataImages**: type (Array), default ([])
+- **selectedImages**: type (Array), default ([])
 - **isMultiple**: type (Boolean), default (false)
 - **rootClass**: type (String), default ('vue-select-image')
 - **h**: type (String), default ('auto')
