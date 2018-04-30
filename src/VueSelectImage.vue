@@ -41,6 +41,10 @@ export default {
       type: Array,
       default: []
     },
+    selectedImages: {
+      type: Array,
+      default: []
+    },
     isMultiple: {
       type: Boolean,
       default: false
@@ -70,6 +74,10 @@ export default {
     dataImagesLocal: function () {
       return this.dataImages || []
     }
+  },
+  mounted () {
+    // set initial selectedImage
+    this.setInitialSelection()
   },
   methods: {
     classThumbnail(selectedId, imageId) {
@@ -109,6 +117,15 @@ export default {
       }
 
       this.$emit('onselectmultipleimage', this.multipleSelected)
+    },
+    setInitialSelection () {
+      if (this.selectedImages) {
+        if (!this.isMultiple && this.selectedImages.length === 1) {
+            this.singleSelected = Object.assign({}, this.selectedImages[0])
+        } else {
+          this.multipleSelected = this.selectedImages
+        }
+      }
     }
   }
 }
