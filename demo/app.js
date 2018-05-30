@@ -1,5 +1,5 @@
 
-import VueSelectImage from './VueSelectImage.vue'
+import VueSelectImage from 'src/VueSelectImage.vue'
 import SocialGithubIcon  from 'icons/social-github.vue'
 import IosEmailIcon  from 'icons/ios-email.vue'
 import SocialFacebookIcon  from 'icons/social-facebook.vue'

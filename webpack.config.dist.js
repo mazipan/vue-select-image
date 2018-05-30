@@ -1,48 +1,106 @@
-var webpack = require('webpack')
-var path = require('path')
-var npm = require("./package.json")
+const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
+const CompressionPlugin = require("compression-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
-const CompressionPlugin = require("compression-webpack-plugin");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
-module.exports = {
-  entry: './src/main-dist.js',
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist',
-    filename: 'vue-select-image.js',
-    library: 'VueSelectImage',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
-    jsonpFunction: 'WebpackJsonp'
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+const NODE_ENV = process.env.NODE_ENV;
+
+const setPath = function(folderName) {
+  return path.join(__dirname, folderName);
+}
+
+const config = {
+  entry: {
+    app: './src/plugin.js'
   },
+  output: {
+    library: "VueSelectImage",
+    libraryTarget: "umd",
+    filename: "vue-select-image.js",
+    umdNamedDefine: true,
+  },
+  optimization:{
+    runtimeChunk: false,
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
+  resolveLoader: {
+    modules: [setPath('node_modules')]
+  },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve(__dirname, ''),
+      'demo': path.resolve(__dirname, 'demo'),
+      'src': path.resolve(__dirname, 'src'),
+      'icons': path.resolve(__dirname, 'node_modules/vue-ionicons/dist')
+    },
+    extensions: ['*', '.js', '.vue', '.json']
+  },
+  mode: 'production',
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        isStaging: (NODE_ENV === 'development'),
+        NODE_ENV: '"'+NODE_ENV+'"'
+      }
+    }),
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "vue-select-image.css"
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip'
+    })
+  ],
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            css: ExtractTextPlugin.extract({
-              use: 'css-loader',
-              fallback: 'vue-style-loader'
-            }),
-            scss: ExtractTextPlugin.extract({
-              use: 'css-loader!sass-loader',
-              fallback: 'vue-style-loader'
-            }),
-            sass: ExtractTextPlugin.extract({
-              use: 'css-loader!sass-loader?indentedSyntax',
-              fallback: 'vue-style-loader'
-            })
-          }
-        }
+        use: 'vue-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ],
+      },
+      {
+        test: /\.sass$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader?indentedSyntax'
+        ],
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: file => (
+          /node_modules/.test(file) &&
+          !/\.vue\.js/.test(file)
+        )
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -52,43 +110,6 @@ module.exports = {
         }
       }
     ]
-  },
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      "icons": path.resolve(__dirname, "node_modules/vue-ionicons/dist")
-    }
-  },
-  externals: {
-    'vue$': 'vue/dist/vue.esm.js'
-  },
-  devtool: '#source-map',
-  plugins: [
-		new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': '"production"'
-      }
-    }),
-		new ExtractTextPlugin({
-			filename: 'vue-select-image.css'
-    }),
-    new OptimizeCSSPlugin({
-      cssProcessorOptions: {
-        safe: true
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: false
-    }),
-    new webpack.BannerPlugin({
-      banner: `vue-select-image v.${npm.version}`
-    }),
-    new CompressionPlugin({
-      algorithm: 'gzip'
-    })
-  ]
-}
+  }
+};
+module.exports = config;
