@@ -28,30 +28,30 @@ export default {
       imageMultipleSelected: [],
       dataImages: [{
         id: '1',
-        src: 'https://raw.githubusercontent.com/mazipan/vue-select-image/master/src/assets/logo-1.png',
+        src: require('demo/assets/logo-1.png'),
         alt: 'jQuery'
       }, {
         id: '2',
-        src: 'https://raw.githubusercontent.com/mazipan/vue-select-image/master/src/assets/logo-2.png',
+        src: require('demo/assets/logo-2.png'),
         alt: 'Angular'
       }, {
         id: '3',
-        src: 'https://raw.githubusercontent.com/mazipan/vue-select-image/master/src/assets/logo-3.png',
+        src: require('demo/assets/logo-3.png'),
         alt: 'Vue.js'
       }, {
         id: '4',
-        src: 'https://raw.githubusercontent.com/mazipan/vue-select-image/master/src/assets/logo-4.png',
+        src: require('demo/assets/logo-4.png'),
         alt: 'React'
       }],
       initialSelected: [
         {
           id: '2',
-          src: 'https://raw.githubusercontent.com/mazipan/vue-select-image/master/src/assets/logo-2.png',
+          src: require('demo/assets/logo-2.png'),
           alt: 'Angular'
         },
         {
           id: '3',
-          src: 'https://raw.githubusercontent.com/mazipan/vue-select-image/master/src/assets/logo-3.png',
+          src: require('demo/assets/logo-3.png'),
           alt: 'Vue.js'
         }
       ]
