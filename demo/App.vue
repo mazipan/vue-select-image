@@ -59,19 +59,6 @@
     </div>
 
     <!-- INSTALLATION -->
-    <div class="grid__row">
-      <h2>Installation</h2>
-      <img src="https://img.shields.io/npm/v/vue-select-image.svg" alt="npm version"/>
-      <pre v-highlightjs>
-        <code class="javascript">
-        // Yarn
-        yarn add vue-select-image
-
-        // NPM
-        npm i vue-select-image --save
-        </code>
-      </pre>
-    </div>
 
     <div class="grid__row content centered">
       <h2>Contribute</h2>
