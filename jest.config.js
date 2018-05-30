@@ -1,7 +1,7 @@
 module.exports = {
   verbose: true,
   collectCoverageFrom: [
-    'VueCurrencyFilter.js',
+    'src/VueSelectImage.vue',
     '!**/node_modules/**'
   ],
   coverageDirectory: 'test/coverage',

@@ -44,6 +44,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
+    "babel-jest": "^23.0.1",
     "cross-env": "^5.1.6",
     "css-loader": "^0.28.11",
     "compression-webpack-plugin": "^1.1.11",
