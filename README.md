@@ -67,7 +67,7 @@ Vue.use(VueSelectImage)
 </vue-select-image>
 ```
 
-`on-select-image` will return emitted with parameter object image selected
+`onselectimage` will return emitted with parameter object image selected
 
 #### Multiple Selection
 
@@ -83,12 +83,21 @@ Vue.use(VueSelectImage)
 
 ### Available Props
 
-- **dataImages**: type (Array), default ([])
-- **selectedImages**: type (Array), default ([])
-- **isMultiple**: type (Boolean), default (false)
-- **rootClass**: type (String), default ('vue-select-image')
-- **h**: type (String), default ('auto')
-- **w**: type (String), default ('auto')
+| Attribute       | Type             | Default          | Description                          	|
+|-----------------|------------------|------------------|--------------------------------------	|
+| :dataImages     | Array            | []               | Array of images that will be shown    |
+| :selectedImages | Array            | []               | Array of initial selected images      |
+| :isMultiple     | Boolean          | false            | Flag to enable multiple selection     |
+| :rootClass      | String           | vue-select-image | Class for root element of this component |
+| :h              | String           | auto             | Height of images, ex: '50px'     |
+| :w              | String           | auto             | Width of images, ex: '50px'      |
+
+### Available Events
+
+| Events Attr            | Return                                            |
+|------------------------|---------------------------------------------------|
+| @onselectimage         | Object image selected                             |
+| @onselectmultipleimage | Array of object image has been selected           |
 
 ### Example
 
