@@ -11,7 +11,7 @@
     "build-lib": "cross-env NODE_ENV=production webpack --mode production --progress --hide-modules --config webpack.config.dist.js",
     "publish-demo": "node ./publish-demo.js",
     "test": "./node_modules/.bin/jest --coverage",
-    "dist": "npm run build-demo && npm run build-lib && npm run publish-demo"
+    "dist": "rm -rf dist && rm -rf dist-demo && npm run build-demo && npm run build-lib && npm run publish-demo"
   },
   "main": "dist/vue-select-image.js",
   "files": [

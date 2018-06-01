@@ -190,7 +190,7 @@ require('vue-select-image/dist/vue-select-image.css')
           <tr>
             <td>:activeClass</td>
             <td>String</td>
-            <td>vue-select-image</td>
+            <td>--selected</td>
             <td>Class for active state, will concat with :rootClass</td>
           </tr>
           <tr>
