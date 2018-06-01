@@ -48,6 +48,10 @@
   margin-left: auto;
 }
 
+.vue-select-image__lbl{
+  line-height: 3;
+}
+
 @media only screen and (min-width: 1200px) {
   .vue-select-image__item {
     margin-left: 30px;

@@ -14,6 +14,11 @@
                :height="h"
                :width="w"
                :class="rootClass + '__img'">
+
+          <label v-if="useLabel"
+                :class="rootClass + '__lbl'">
+                {{dataImage.alt}}
+          </label>
         </div>
 
         <div
@@ -26,6 +31,11 @@
                :height="h"
                :width="w"
                :class="rootClass + '__img'">
+
+          <label v-if="useLabel"
+                :class="rootClass + '__lbl'">
+                {{dataImage.alt}}
+          </label>
         </div>
 
       </li>
@@ -49,9 +59,17 @@ export default {
       type: Boolean,
       default: false
     },
+    useLabel: {
+      type: Boolean,
+      default: false
+    },
     rootClass: {
       type: String,
       default: 'vue-select-image'
+    },
+    activeClass: {
+      type: String,
+      default: '--selected'
     },
     h: {
       type: String,
@@ -83,7 +101,7 @@ export default {
     classThumbnail(selectedId, imageId) {
       const baseClass = `${this.rootClass}__thumbnail`
       if (selectedId === imageId) {
-        return `${baseClass} ${baseClass}--selected`
+        return `${baseClass} ${baseClass}${this.activeClass}`
       }
       return `${baseClass}`
     },
@@ -91,7 +109,7 @@ export default {
       const baseClass = `${this.rootClass}__thumbnail`
       const baseMultipleClass = `${baseClass} is--multiple`
       if (this.isExistInArray(id)) {
-        return `${baseMultipleClass} ${baseClass}--selected`
+        return `${baseMultipleClass} ${baseClass}${this.activeClass}`
       }
       return `${baseMultipleClass}`
     },

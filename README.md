@@ -88,7 +88,9 @@ Vue.use(VueSelectImage)
 | :dataImages     | Array            | []               | Array of images that will be shown    |
 | :selectedImages | Array            | []               | Array of initial selected images      |
 | :isMultiple     | Boolean          | false            | Flag to enable multiple selection     |
+| :useLabel       | Boolean          | false            | Flag to enable showing alt as label   |
 | :rootClass      | String           | vue-select-image | Class for root element of this component |
+| :activeClass    | String           | --selected       | Class for active state, will concat with :rootClass |
 | :h              | String           | auto             | Height of images, ex: '50px'     |
 | :w              | String           | auto             | Width of images, ex: '50px'      |
 

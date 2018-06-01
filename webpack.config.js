@@ -2,14 +2,13 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
 const CompressionPlugin = require("compression-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -22,55 +21,39 @@ const buildingForLocal = () => {
 };
 
 const setPublicPath = () => {
-  return '/vue-select-image/';
+  return buildingForLocal() ? '/' : '/vue-select-image/';
 };
+
+const extractHTML = new HtmlWebpackPlugin({
+  title: 'History Search',
+  filename: 'index.html',
+  inject: true,
+  template: path.join(__dirname, 'demo/index.ejs'),
+  minify: {
+    removeAttributeQuotes: true,
+    collapseWhitespace: true,
+    html5: true,
+    minifyCSS: true,
+    removeComments: true,
+    removeEmptyAttributes: true
+  },
+  environment: process.env.NODE_ENV
+});
+
 
 const config = {
   entry: {
     app: path.join(setPath('demo'), 'main.js')
   },
   output: {
-    path: buildingForLocal() ? setPath('demo') : setPath('dist-demo'),
+    path: buildingForLocal() ? path.resolve(__dirname) : setPath('dist-demo'),
     publicPath: setPublicPath(),
-    chunkFilename: '[name].bundle.js',
     filename: buildingForLocal() ? 'js/[name].js' : 'js/[name].[hash].js'
   },
   optimization:{
-    runtimeChunk: true,
+    runtimeChunk: false,
     splitChunks: {
-      chunks: "async",
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      name: true,
-      cacheGroups: {
-        vue: {
-          test: function(module) {
-            return (
-              module.resource &&
-              module.resource.indexOf('node_modules/vue') >= 0
-            );
-          },
-          name: "vue",
-          chunks: "all",
-          minChunks: 1,
-          priority: -10
-        },
-        commons: {
-          test: function(module) {
-            return (
-              module.resource &&
-              module.resource.indexOf('node_modules') >= 0 &&
-              module.resource.indexOf('node_modules/vue') === -1
-            );
-          },
-          name: "vendors",
-          chunks: "all",
-          minChunks: 1,
-          priority: -20
-        }
-      }
+      chunks: "all", //Taken from https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693
     },
     minimizer: [
       new UglifyJsPlugin({
@@ -106,25 +89,10 @@ const config = {
         NODE_ENV: '"'+NODE_ENV+'"'
       }
     }),
-    new HtmlWebpackPlugin({
-      title: 'Demo Page',
-      filename: 'index.html',
-      template: path.join(setPath('demo'), 'index.ejs'),
-      minify: {
-        removeAttributeQuotes: true,
-        collapseWhitespace: true,
-        html5: true,
-        minifyCSS: true,
-        removeComments: true,
-        removeEmptyAttributes: true
-      },
-      environment: process.env.NODE_ENV,
-      inject: true
-    }),
+    extractHTML,
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: "css/[name].[hash].css"
     }),
     new CompressionPlugin({
       algorithm: 'gzip'
@@ -175,9 +143,6 @@ const config = {
         }
       }
     ]
-  },
-  stats: {
-    children: false,
-  },
+  }
 };
 module.exports = config;
