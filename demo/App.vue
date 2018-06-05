@@ -7,7 +7,7 @@
           <a href="https://mazipan.github.io/demo/">
             <img src="https://mazipan.github.io/images/irfan-maulana.jpg" alt="Irfan Maulana" title="Irfan Maulana">
           </a>
-          <div class="header__title">Irfan Maulana | Demo</div>
+          <div class="header__title">{{ title }}</div>
         </div>
 
         <a href="https://github.com/mazipan/vue-select-image"
@@ -37,8 +37,6 @@
         <vue-select-image :dataImages="dataImages"
                           @onselectimage="onSelectImage">
         </vue-select-image>
-        <br>
-        <i>Image by http://placekitten.com</i>
         <div>
           <h5>Image Selected :
             <span v-if="imageSelected.id !== ''">
@@ -48,11 +46,6 @@
         </div>
       </div>
 
-      <InArticleAdsense
-          data-ad-client="ca-pub-5442972248172818"
-          data-ad-slot="7974047383">
-      </InArticleAdsense>
-
       <div class="grid__row content centered">
         <h2>Multiple Selection</h2>
         <vue-select-image :dataImages="dataImages"
@@ -60,8 +53,6 @@
                           @onselectmultipleimage="onSelectMultipleImage"
                           :selectedImages="initialSelected">
         </vue-select-image>
-        <br>
-        <i>Image by http://placekitten.com</i>
         <div>
           <h5>Mutiple Image Selected :
             <span v-for="(imgSelected, index) in imageMultipleSelected" :key="index">
@@ -77,8 +68,6 @@
                           @onselectimage="onSelectImage"
                           :useLabel="true">
         </vue-select-image>
-        <br>
-        <i>Image by http://placekitten.com</i>
       </div>
 
       <div class="grid__row content centered">
@@ -87,8 +76,6 @@
                           @onselectimage="onSelectImage"
                           :activeClass="'--active'">
         </vue-select-image>
-        <br>
-        <i>Image by http://placekitten.com</i>
       </div>
 
        <div class="grid__row content centered">
@@ -98,10 +85,15 @@
                           :rootClass="'custom-style'">
         </vue-select-image>
         <br>
-        <i>Image by http://placekitten.com</i>
+        <i class="label-image">Image by http://placekitten.com</i>
       </div>
 
     </div>
+
+    <InArticleAdsense
+        data-ad-client="ca-pub-5442972248172818"
+        data-ad-slot="7974047383">
+    </InArticleAdsense>
 
     <!-- INSTALLATION -->
 
@@ -305,7 +297,9 @@ small {
     color: #4f8ef7;
   }
 }
-
+.label-image{
+  font-size: .7rem;
+}
 .vue-select-image {
   display: flex;
   justify-content: center;
@@ -326,6 +320,7 @@ table{
   border-spacing: 0;
   border-collapse: collapse;
   text-align: left;
+  font-size: 1.2rem;
 
   thead{
     tr{
@@ -357,7 +352,7 @@ table{
       font-size: 20px;
       border-radius: 3px;
     }
-    
+
   }
 }
 
@@ -408,6 +403,10 @@ table{
 
     &--selected{
       background: #0088cc;
+
+      .custom-style__img{
+        zoom: 1.1;
+      }
     }
   }
   &__img{
