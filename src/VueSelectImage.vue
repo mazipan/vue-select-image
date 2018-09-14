@@ -122,16 +122,26 @@ export default {
         return id === item.id
       })
     },
-    removeSelected (id) {
-      return this.multipleSelected.filter((item) => {
+    removeFromSingleSelected () {
+      this.singleSelected = {}
+      this.$emit('onselectimage', {})
+    },
+    removeFromMultipleSelected (id, dontFireEmit) {
+      this.multipleSelected = this.multipleSelected.filter((item) => {
         return id !== item.id
       })
+      if (!dontFireEmit) {
+        this.$emit('onselectmultipleimage', this.multipleSelected)
+      }
+    },
+    resetMultipleSelection () {
+      this.multipleSelected = []
     },
     onSelectMultipleImage(objectImage) {
       if (!this.isExistInArray(objectImage.id)) {
         this.multipleSelected.push(objectImage)
       } else {
-        this.multipleSelected = this.removeSelected(objectImage.id)
+        this.removeFromMultipleSelected(objectImage.id, true)
       }
 
       this.$emit('onselectmultipleimage', this.multipleSelected)

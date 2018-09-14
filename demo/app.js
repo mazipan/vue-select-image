@@ -74,11 +74,14 @@ export default {
   methods: {
     onSelectImage: function (data) {
       console.log('fire event onSelectImage: ', data)
-      this.imageSelected = Object.assign({}, this.imageSelected, data)
+      this.imageSelected = data
     },
     onSelectMultipleImage: function (data) {
       console.log('fire event onSelectMultipleImage: ', data)
       this.imageMultipleSelected = data
+    },
+    onUnselectSingleImage: function () {
+      this.$refs['single-select-image'].removeFromSingleSelected()
     }
   }
 }

@@ -9,11 +9,17 @@
           </a>
           <div class="header__title">{{ title }}</div>
         </div>
+        
+        <div class="header__brand">
+          <a href="#docs" style="margin-right: 2em;">
+            Docs
+          </a>
 
-        <a href="https://github.com/mazipan/vue-select-image"
-            target="_blank" style="margin-right: 2em;">
-          <SocialGithubIcon w="30px" h="30px"/>
-        </a>
+          <a href="https://github.com/mazipan/vue-select-image"
+              target="_blank" style="margin-right: 2em;">
+            <SocialGithubIcon w="30px" h="30px"/>
+          </a>
+        </div>
 
       </div>
     </header>
@@ -35,7 +41,8 @@
       <div class="grid__row content centered">
         <h2>Single Selection</h2>
         <vue-select-image :dataImages="dataImages"
-                          @onselectimage="onSelectImage">
+                          @onselectimage="onSelectImage"
+                          ref="single-select-image">
         </vue-select-image>
         <div>
           <h5>Image Selected :
@@ -43,6 +50,7 @@
               <span>id = {{ imageSelected.id }}</span>
             </span>
           </h5>
+          <button @click="onUnselectSingleImage">Reset Selection</button>
         </div>
       </div>
 
@@ -97,15 +105,15 @@
 
     <!-- INSTALLATION -->
 
-    <div class="grid__row content centered">
+    <div class="grid__row content centered" id="docs">
       <h2>Download</h2>
       <pre v-highlightjs>
         <code class="bash">
-          # NPM
-          npm install vue-select-image
+# NPM
+npm install vue-select-image
 
-          # Yarn
-          yarn add vue-select-image
+# Yarn
+yarn add vue-select-image
         </code>
       </pre>
     </div>

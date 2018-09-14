@@ -101,6 +101,17 @@ Vue.use(VueSelectImage)
 | @onselectimage         | Object image selected                             |
 | @onselectmultipleimage | Array of object image has been selected           |
 
+### Useful Methods (from v1.6.0)
+
+Sometimes you need to access our internal methods via `$refs`, you need to know this methods:
+
+| Methods Name                     | Use for                                              |
+|----------------------------------|---------------------------------------------------   |
+| removeFromSingleSelected()       | Reset selected image in single selection mode        |
+| removeFromMultipleSelected()     | Remove from selected list in multiple selection mode |
+| resetMultipleSelection(id)       | Reset all selected list in multiple selection mode   |
+| isExistInArray(id)               | Will return object image if exist, undefined if not exist   |
+
 ### Example
 
 Example can be found here :
