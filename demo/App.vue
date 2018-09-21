@@ -428,6 +428,10 @@ table{
     -moz-border-radius: 50%;
     border-radius: 50%;
   }
-
+}
+.adswrapper {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
 }
 </style>
