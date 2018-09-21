@@ -93,7 +93,7 @@ export default {
       return this.dataImages || []
     }
   },
-  created () {
+  mounted () {
     // set initial selectedImage
     this.setInitialSelection()
   },
