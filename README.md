@@ -123,6 +123,11 @@ Example can be found here :
 
 Thanks for inspiration : [https://github.com/rvera/image-picker](https://github.com/rvera/image-picker)
 
+## Support me
+
+- Via [trakteer](https://trakteer.id/mazipan)
+- Direct support, [send me an email](mailto:mazipanneh@gmail.com)
+
 ### Contributing
 
 If you'd like to contribute, head to the [contributing guidelines](/CONTRIBUTING.md). Inside you'll find directions for opening issues, coding standards, and notes on development.
