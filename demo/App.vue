@@ -17,7 +17,7 @@
 
           <a href="https://github.com/mazipan/vue-select-image"
               target="_blank" style="margin-right: 2em;">
-            <SocialGithubIcon w="30px" h="30px"/>
+            Github
           </a>
         </div>
 
@@ -265,27 +265,7 @@ require('vue-select-image/dist/vue-select-image.css')
       <p>Feel free to fork <i class="fa fa-code-fork"></i> on <a href="https://github.com/mazipan/vue-select-image" target="_blank">GitHub <i class="fa fa-github"></i></a> if you have any features <i class="fa fa-cart-plus"></i> or bugs <i class="fa fa-bug"></i>!</p>
     </div>
     <div class="grid__row content centered">
-      <h2>Contact Developer</h2>
-      <p>
-        <a href="https://github.com/mazipan">
-          <SocialGithubIcon w="30px" h="30px"/>
-        </a>
-        <a href="mailto:mazipanneh@gmail.com">
-          <IosEmailIcon w="30px" h="30px" />
-        </a>
-        <a href="https://facebook.com/mazipanneh">
-          <SocialFacebookIcon w="30px" h="30px"/>
-        </a>
-        <a href="https://twitter.com/Maz_Ipan">
-          <SocialTwitterIcon w="30px" h="30px"/>
-        </a>
-        <a href="https://id.linkedin.com/in/irfanmaulanamazipan">
-          <SocialLinkedinIcon w="30px" h="30px"/>
-        </a>
-      </p>
-    </div>
-    <div class="grid__row content centered">
-      <p>Copyright © 2017 <a href="https://mazipanneh.com/blog/">Irfan Maulana</a>, All Rights Reserved.</p>
+      <p>Copyright © 2017 <a href="https://mazipan.space/">Irfan Maulana</a>, All Rights Reserved.</p>
     </div>
 
   </div>
@@ -294,9 +274,6 @@ require('vue-select-image/dist/vue-select-image.css')
 <script src="./app.js"></script>
 
 <style lang="scss">
-// import ionicons global scss
-@import "~vue-ionicons/ionicons.scss";
-
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

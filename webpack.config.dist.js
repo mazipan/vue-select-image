@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const CompressionPlugin = require("compression-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -27,12 +27,9 @@ const config = {
   },
   optimization:{
     runtimeChunk: false,
+    minimize: true,
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true // set to true if you want JS source maps
-      }),
+      new TerserPlugin(),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
@@ -44,8 +41,7 @@ const config = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, ''),
       'demo': path.resolve(__dirname, 'demo'),
-      'src': path.resolve(__dirname, 'src'),
-      'icons': path.resolve(__dirname, 'node_modules/vue-ionicons/dist')
+      'src': path.resolve(__dirname, 'src')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
@@ -95,12 +91,14 @@ const config = {
         ],
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: file => (
-          /node_modules/.test(file) &&
-          !/\.vue\.js/.test(file)
-        )
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
