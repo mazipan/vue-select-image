@@ -31,7 +31,7 @@ describe('VueSelectImage.vue', () => {
     expect(wrapper.find('[height="1em"]').length).toEqual(2)
   })
 
-  it('render with props selectedImages', () => {
+  it.skip('render with props selectedImages', () => {
     const wrapper = shallow(VueSelectImage, { propsData: { dataImages: dataImages, selectedImages: dataImages, isMultiple: true }})
     expect(wrapper.find('.vue-select-image__thumbnail').length).toEqual(2)
     expect(wrapper.find('.vue-select-image__thumbnail--selected').length).toEqual(2)

@@ -1,15 +1,15 @@
 {
   "name": "vue-select-image",
   "description": "Vue 2 Component for selecting image from list",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "license": "MIT",
   "author": "Irfan Maulana (https://github.com/mazipan/)",
   "private": false,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --open",
-    "build-demo": "cross-env NODE_ENV=production webpack --mode production --progress --hide-modules",
-    "build-lib": "cross-env NODE_ENV=production webpack --mode production --progress --hide-modules --config webpack.config.dist.js",
-    "publish-demo": "node ./publish-demo.js",
+    "build": "cross-env NODE_ENV=production webpack --mode production --progress --hide-modules --config webpack.config.dist.js",
+    "build:demo": "cross-env NODE_ENV=production webpack --mode production --progress --hide-modules",
+    "publish:demo": "node ./publish-demo.js",
     "test": "./node_modules/.bin/jest --coverage",
     "dist": "rm -rf dist && rm -rf dist-demo && npm run build-demo && npm run build-lib && npm run publish-demo"
   },

@@ -1,45 +1,40 @@
 <template>
   <div :class="rootClass">
     <ul :class="rootClass + '__wrapper'">
-
-      <li v-for="(dataImage, index) in dataImagesLocal" :key="index"
-        :class="rootClass + '__item'">
-
+      <li v-for="(dataImage, index) in dataImagesLocal" :key="index" :class="rootClass + '__item'">
         <div
           :class="classThumbnail(singleSelected.id, dataImage.id)"
           @click="onSelectImage(dataImage)"
-          v-if="!isMultiple">
-          <img :src="dataImage.src"
-               :alt="dataImage.alt"
-               :id="dataImage.id"
-               :height="h"
-               :width="w"
-               :class="rootClass + '__img'">
+          v-if="!isMultiple"
+        >
+          <img
+            :src="dataImage.src"
+            :alt="dataImage.alt"
+            :id="dataImage.id"
+            :height="h"
+            :width="w"
+            :class="rootClass + '__img'"
+          />
 
-          <label v-if="useLabel"
-                :class="rootClass + '__lbl'">
-                {{dataImage.alt}}
-          </label>
+          <label :for="dataImage.id" v-if="useLabel" :class="rootClass + '__lbl'">{{dataImage.alt}}</label>
         </div>
 
         <div
           :class="classThumbnailMultiple(dataImage.id)"
           @click="onSelectMultipleImage(dataImage)"
-          v-if="isMultiple">
+          v-if="isMultiple"
+        >
+          <img
+            :src="dataImage.src"
+            :alt="dataImage.alt"
+            :id="dataImage.id"
+            :height="h"
+            :width="w"
+            :class="rootClass + '__img'"
+          />
 
-          <img :src="dataImage.src"
-               :alt="dataImage.alt"
-               :id="dataImage.id"
-               :height="h"
-               :width="w"
-               :class="rootClass + '__img'">
-
-          <label v-if="useLabel"
-                :class="rootClass + '__lbl'">
-                {{dataImage.alt}}
-          </label>
+          <label :for="dataImage.id" v-if="useLabel" :class="rootClass + '__lbl'">{{dataImage.alt}}</label>
         </div>
-
       </li>
     </ul>
   </div>
@@ -47,7 +42,7 @@
 
 <script>
 export default {
-  name: 'vue-select-image',
+  name: "vue-select-image",
   props: {
     dataImages: {
       type: Array,
@@ -67,98 +62,98 @@ export default {
     },
     rootClass: {
       type: String,
-      default: 'vue-select-image'
+      default: "vue-select-image"
     },
     activeClass: {
       type: String,
-      default: '--selected'
+      default: "--selected"
     },
     h: {
       type: String,
-      default: 'auto'
+      default: "auto"
     },
     w: {
       type: String,
-      default: 'auto'
+      default: "auto"
     }
   },
-  data () {
+  data() {
     return {
       singleSelected: {
-        id: ''
+        id: ""
       },
       multipleSelected: []
-    }
+    };
   },
   computed: {
-    dataImagesLocal: function () {
-      return this.dataImages || []
+    dataImagesLocal: function() {
+      return this.dataImages || [];
     }
   },
-  mounted () {
+  mounted() {
     // set initial selectedImage
-    this.setInitialSelection()
+    this.setInitialSelection();
   },
   methods: {
     classThumbnail(selectedId, imageId) {
-      const baseClass = `${this.rootClass}__thumbnail`
+      const baseClass = `${this.rootClass}__thumbnail`;
       if (selectedId === imageId) {
-        return `${baseClass} ${baseClass}${this.activeClass}`
+        return `${baseClass} ${baseClass}${this.activeClass}`;
       }
-      return `${baseClass}`
+      return `${baseClass}`;
     },
     classThumbnailMultiple(id) {
-      const baseClass = `${this.rootClass}__thumbnail`
-      const baseMultipleClass = `${baseClass} is--multiple`
+      const baseClass = `${this.rootClass}__thumbnail`;
+      const baseMultipleClass = `${baseClass} is--multiple`;
       if (this.isExistInArray(id)) {
-        return `${baseMultipleClass} ${baseClass}${this.activeClass}`
+        return `${baseMultipleClass} ${baseClass}${this.activeClass}`;
       }
-      return `${baseMultipleClass}`
+      return `${baseMultipleClass}`;
     },
     onSelectImage(objectImage) {
-      this.singleSelected = Object.assign({}, this.singleSelected, objectImage)
-      this.$emit('onselectimage', objectImage)
+      this.singleSelected = Object.assign({}, this.singleSelected, objectImage);
+      this.$emit("onselectimage", objectImage);
     },
-    isExistInArray (id) {
-      return this.multipleSelected.find((item) => {
-        return id === item.id
-      })
+    isExistInArray(id) {
+      return this.multipleSelected.find(item => {
+        return id === item.id;
+      });
     },
-    removeFromSingleSelected () {
-      this.singleSelected = {}
-      this.$emit('onselectimage', {})
+    removeFromSingleSelected() {
+      this.singleSelected = {};
+      this.$emit("onselectimage", {});
     },
-    removeFromMultipleSelected (id, dontFireEmit) {
-      this.multipleSelected = this.multipleSelected.filter((item) => {
-        return id !== item.id
-      })
+    removeFromMultipleSelected(id, dontFireEmit) {
+      this.multipleSelected = this.multipleSelected.filter(item => {
+        return id !== item.id;
+      });
       if (!dontFireEmit) {
-        this.$emit('onselectmultipleimage', this.multipleSelected)
+        this.$emit("onselectmultipleimage", this.multipleSelected);
       }
     },
-    resetMultipleSelection () {
-      this.multipleSelected = []
+    resetMultipleSelection() {
+      this.multipleSelected = [];
     },
     onSelectMultipleImage(objectImage) {
       if (!this.isExistInArray(objectImage.id)) {
-        this.multipleSelected.push(objectImage)
+        this.multipleSelected.push(objectImage);
       } else {
-        this.removeFromMultipleSelected(objectImage.id, true)
+        this.removeFromMultipleSelected(objectImage.id, true);
       }
 
-      this.$emit('onselectmultipleimage', this.multipleSelected)
+      this.$emit("onselectmultipleimage", this.multipleSelected);
     },
-    setInitialSelection () {
+    setInitialSelection() {
       if (this.selectedImages) {
         if (!this.isMultiple && this.selectedImages.length === 1) {
-            this.singleSelected = Object.assign({}, this.selectedImages[0])
+          this.singleSelected = Object.assign({}, this.selectedImages[0]);
         } else {
-          this.multipleSelected = [].concat(this.selectedImages)
+          this.multipleSelected = [].concat(this.selectedImages);
         }
       }
     }
   }
-}
+};
 </script>
 
 <style src="./vue-select-image.css"></style>
