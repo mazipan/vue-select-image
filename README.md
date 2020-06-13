@@ -54,16 +54,29 @@ Vue.use(VueSelectImage)
   id: '2',
   src: 'https://unsplash.it/200?random',
   alt: 'Alt Image 2'
+}, {
+  id: '2',
+  src: 'https://unsplash.it/200?random',
+  alt: 'Alt Image 2',
+  disabled: true
 }]
 ```
+
+| Field            | Description                                            |
+|------------------------|---------------------------------------------------|
+| id         | Unique id for each image, will also set for id attribute on image DOM                             |
+| src | Src attribute for image           |
+| alt | Alt attribute for image           |
+| disabled | Image disabled, can not be select           |
 
 ### Template
 
 #### Single Selection
 
 ```html
-<vue-select-image :dataImages="dataImages"
-                  @onselectimage="onSelectImage">
+<vue-select-image
+  :dataImages="dataImages"
+  @onselectimage="onSelectImage">
 </vue-select-image>
 ```
 
@@ -72,10 +85,11 @@ Vue.use(VueSelectImage)
 #### Multiple Selection
 
 ```html
-<vue-select-image :dataImages="dataImages"
-                  :is-multiple="true"
-                  :selectedImages="initialSelected"
-                  @onselectmultipleimage="onSelectMultipleImage">
+<vue-select-image
+  :dataImages="dataImages"
+  :is-multiple="true"
+  :selectedImages="initialSelected"
+  @onselectmultipleimage="onSelectMultipleImage">
 </vue-select-image>
 ```
 
@@ -93,6 +107,7 @@ Vue.use(VueSelectImage)
 | :activeClass    | String           | --selected       | Class for active state, will concat with :rootClass |
 | :h              | String           | auto             | Height of images, ex: '50px'     |
 | :w              | String           | auto             | Width of images, ex: '50px'      |
+| :limit          | Number           | 0                | To set maximum images can be select      |
 
 ### Available Events
 
@@ -100,6 +115,7 @@ Vue.use(VueSelectImage)
 |------------------------|---------------------------------------------------|
 | @onselectimage         | Object image selected                             |
 | @onselectmultipleimage | Array of object image has been selected           |
+| @onreachlimit          | When the length of selected images reach the limit |
 
 ### Useful Methods (from v1.6.0)
 

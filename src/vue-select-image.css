@@ -14,6 +14,7 @@
 }
 
 .vue-select-image__thumbnail{
+  cursor: pointer;
   padding: 6px;
   border: 1px solid #dddddd;
 
@@ -38,6 +39,15 @@
 
 .vue-select-image__thumbnail--selected{
   background: #0088cc;
+}
+
+.vue-select-image__thumbnail--disabled{
+  background: #b9b9b9;
+  cursor: not-allowed;
+}
+
+.vue-select-image__thumbnail--disabled > .vue-select-image__img{
+  opacity: .5;
 }
 
 .vue-select-image__img{

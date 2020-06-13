@@ -1,4 +1,3 @@
-
 import VueSelectImage from 'src/VueSelectImage.vue'
 import SocialGithubIcon  from 'icons/social-github.vue'
 import IosEmailIcon  from 'icons/ios-email.vue'
@@ -42,6 +41,11 @@ export default {
         id: '4',
         src: 'http://placekitten.com/200/200',
         alt: 'React'
+      }, {
+        id: '5',
+        src: 'http://placekitten.com/200/200',
+        alt: 'I am disabled',
+        disabled: true
       }],
       initialSelected: [
         {
@@ -79,6 +83,9 @@ export default {
     onSelectMultipleImage: function (data) {
       console.log('fire event onSelectMultipleImage: ', data)
       this.imageMultipleSelected = data
+    },
+    onReachLimit: function () {
+      alert('Reach limit...')
     },
     onUnselectSingleImage: function () {
       this.$refs['single-select-image'].removeFromSingleSelected()

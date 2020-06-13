@@ -9,7 +9,7 @@
           </a>
           <div class="header__title">{{ title }}</div>
         </div>
-        
+
         <div class="header__brand">
           <a href="#docs" style="margin-right: 2em;">
             Docs
@@ -58,6 +58,25 @@
         <h2>Multiple Selection</h2>
         <vue-select-image :dataImages="dataImages"
                           :is-multiple="true"
+                          @onselectmultipleimage="onSelectMultipleImage"
+                          :selectedImages="initialSelected">
+        </vue-select-image>
+        <div>
+          <h5>Mutiple Image Selected :
+            <span v-for="(imgSelected, index) in imageMultipleSelected" :key="index">
+              <span>id = {{ imgSelected.id }}, </span>
+            </span>
+          </h5>
+        </div>
+      </div>
+
+
+      <div class="grid__row content centered">
+        <h2>Multiple Selection with Limit 2</h2>
+        <vue-select-image :dataImages="dataImages"
+                          :is-multiple="true"
+                          :limit="2"
+                          @onreachlimit="onReachLimit"
                           @onselectmultipleimage="onSelectMultipleImage"
                           :selectedImages="initialSelected">
         </vue-select-image>
@@ -158,52 +177,58 @@ require('vue-select-image/dist/vue-select-image.css')
         </thead>
         <tbody>
           <tr>
-            <td>:dataImages</td>
+            <td><code>:dataImages</code></td>
             <td>Array</td>
             <td>[]</td>
             <td>Array of images that will be shown</td>
           </tr>
           <tr>
-            <td>:selectedImages</td>
+            <td><code>:selectedImages</code></td>
             <td>Array</td>
             <td>[]</td>
             <td>Array of initial selected images</td>
           </tr>
           <tr>
-            <td>:isMultiple</td>
+            <td><code>:isMultiple</code></td>
             <td>Boolean</td>
             <td>false</td>
             <td>Flag to enable multiple selection</td>
           </tr>
           <tr>
-            <td>:useLabel</td>
+            <td><code>:useLabel</code></td>
             <td>Boolean</td>
             <td>false</td>
             <td>Flag to enable showing alt as label</td>
           </tr>
           <tr>
-            <td>:rootClass</td>
+            <td><code>:rootClass</code></td>
             <td>String</td>
             <td>vue-select-image</td>
             <td>Class for root element of this component</td>
           </tr>
           <tr>
-            <td>:activeClass</td>
+            <td><code>:activeClass</code></td>
             <td>String</td>
             <td>--selected</td>
             <td>Class for active state, will concat with :rootClass</td>
           </tr>
           <tr>
-            <td>:h</td>
+            <td><code>:h</code></td>
             <td>String</td>
             <td>auto</td>
             <td>Height of images, ex: '50px'</td>
           </tr>
           <tr>
-            <td>:w</td>
+            <td><code>:w</code></td>
             <td>String</td>
             <td>auto</td>
             <td>Width of images, ex: '50px'</td>
+          </tr>
+          <tr>
+            <td><code>:limit</code></td>
+            <td>Number</td>
+            <td>0</td>
+            <td>To set maximum images can be select</td>
           </tr>
         </tbody>
       </table>
@@ -220,12 +245,16 @@ require('vue-select-image/dist/vue-select-image.css')
         </thead>
         <tbody>
           <tr>
-            <td>@onselectimage</td>
+            <td><code>@onselectimage</code></td>
             <td>Object image selected</td>
           </tr>
           <tr>
-            <td>@onselectmultipleimage</td>
+            <td><code>@onselectmultipleimage</code></td>
             <td>Array of object image has been selected</td>
+          </tr>
+          <tr>
+            <td><code>@onreachlimit</code></td>
+            <td>When the length of selected images reach the limit</td>
           </tr>
         </tbody>
       </table>

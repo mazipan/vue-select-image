@@ -1,9 +1,9 @@
 <template>
   <div :class="rootClass">
-    <ul :class="rootClass + '__wrapper'">
-      <li v-for="(dataImage, index) in dataImagesLocal" :key="index" :class="rootClass + '__item'">
+    <ul :class="`${rootClass}__wrapper`">
+      <li v-for="(dataImage, index) in dataImagesLocal" :key="index" :class="`${rootClass}__item`">
         <div
-          :class="classThumbnail(singleSelected.id, dataImage.id)"
+          :class="classThumbnail(singleSelected.id, dataImage.id, dataImage.disabled)"
           @click="onSelectImage(dataImage)"
           v-if="!isMultiple"
         >
@@ -13,14 +13,14 @@
             :id="dataImage.id"
             :height="h"
             :width="w"
-            :class="rootClass + '__img'"
+            :class="`${rootClass}__img`"
           />
 
-          <label :for="dataImage.id" v-if="useLabel" :class="rootClass + '__lbl'">{{dataImage.alt}}</label>
+          <label :for="dataImage.id" v-if="useLabel" :class="`${rootClass}__lbl`">{{dataImage.alt}}</label>
         </div>
 
         <div
-          :class="classThumbnailMultiple(dataImage.id)"
+          :class="classThumbnailMultiple(dataImage.id, dataImage.disabled)"
           @click="onSelectMultipleImage(dataImage)"
           v-if="isMultiple"
         >
@@ -30,10 +30,10 @@
             :id="dataImage.id"
             :height="h"
             :width="w"
-            :class="rootClass + '__img'"
+            :class="`${rootClass}__img`"
           />
 
-          <label :for="dataImage.id" v-if="useLabel" :class="rootClass + '__lbl'">{{dataImage.alt}}</label>
+          <label :for="dataImage.id" v-if="useLabel" :class="`${rootClass}__lbl`">{{dataImage.alt}}</label>
         </div>
       </li>
     </ul>
@@ -75,6 +75,10 @@ export default {
     w: {
       type: String,
       default: "auto"
+    },
+    limit: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -95,24 +99,32 @@ export default {
     this.setInitialSelection();
   },
   methods: {
-    classThumbnail(selectedId, imageId) {
+    classThumbnail(selectedId, imageId, isDisabled) {
       const baseClass = `${this.rootClass}__thumbnail`;
+      if (isDisabled) {
+        return `${baseClass} ${baseClass}--disabled`;
+      }
       if (selectedId === imageId) {
         return `${baseClass} ${baseClass}${this.activeClass}`;
       }
       return `${baseClass}`;
     },
-    classThumbnailMultiple(id) {
+    classThumbnailMultiple(id, isDisabled) {
       const baseClass = `${this.rootClass}__thumbnail`;
       const baseMultipleClass = `${baseClass} is--multiple`;
+      if (isDisabled) {
+        return `${baseMultipleClass} ${baseClass}--disabled`;
+      }
       if (this.isExistInArray(id)) {
         return `${baseMultipleClass} ${baseClass}${this.activeClass}`;
       }
       return `${baseMultipleClass}`;
     },
     onSelectImage(objectImage) {
-      this.singleSelected = Object.assign({}, this.singleSelected, objectImage);
-      this.$emit("onselectimage", objectImage);
+      if (!objectImage.disabled) {
+        this.singleSelected = Object.assign({}, this.singleSelected, objectImage);
+        this.$emit("onselectimage", objectImage);
+      }
     },
     isExistInArray(id) {
       return this.multipleSelected.find(item => {
@@ -135,13 +147,24 @@ export default {
       this.multipleSelected = [];
     },
     onSelectMultipleImage(objectImage) {
-      if (!this.isExistInArray(objectImage.id)) {
-        this.multipleSelected.push(objectImage);
-      } else {
-        this.removeFromMultipleSelected(objectImage.id, true);
+      if (!objectImage.disabled) {
+        if (!this.isExistInArray(objectImage.id)) {
+          if (this.limit > 0) {
+            if (this.multipleSelected.length < this.limit) {
+              this.multipleSelected.push(objectImage);
+              this.$emit("onselectmultipleimage", this.multipleSelected);
+            } else {
+              this.$emit("onreachlimit", this.limit);
+            }
+          } else {
+            this.multipleSelected.push(objectImage);
+            this.$emit("onselectmultipleimage", this.multipleSelected);
+          }
+        } else {
+          this.removeFromMultipleSelected(objectImage.id, true);
+          this.$emit("onselectmultipleimage", this.multipleSelected);
+        }
       }
-
-      this.$emit("onselectmultipleimage", this.multipleSelected);
     },
     setInitialSelection() {
       if (this.selectedImages) {
