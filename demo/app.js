@@ -4,11 +4,6 @@ export default {
   name: 'app',
   components: {
     VueSelectImage,
-    SocialGithubIcon,
-    IosEmailIcon,
-    SocialFacebookIcon,
-    SocialTwitterIcon,
-    SocialLinkedinIcon
   },
   data () {
     return {
