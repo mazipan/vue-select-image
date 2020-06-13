@@ -11,6 +11,7 @@
           v-if="!isMultiple">
           <img :src="dataImage.src"
                :alt="dataImage.alt"
+               :id="dataImage.id"
                :height="h"
                :width="w"
                :class="rootClass + '__img'">
@@ -28,6 +29,7 @@
 
           <img :src="dataImage.src"
                :alt="dataImage.alt"
+               :id="dataImage.id"
                :height="h"
                :width="w"
                :class="rootClass + '__img'">
