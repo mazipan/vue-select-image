@@ -1,0 +1,13 @@
+/*!
+  * vue-script2 v2.1.0
+  * (c) 2016-2019 Greg Slepak
+  * @license MIT License
+  */
+
+/*!
+ * Vue.js v2.6.11
+ * (c) 2014-2019 Evan You
+ * Released under the MIT License.
+ */
+
+/*! VueGoogleAdsense v1.8.1 by Irfan Maulana <github.com/mazipan> */
