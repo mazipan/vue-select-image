@@ -1,5 +1,19 @@
 language: node_js
-script: npm run test
+node_js: '12'
+branches:
+  only:
+  - master
+  - /^greenkeeper/.*$/
+  - /^feature/.*$/
+  - /^renovate/.*$/
+cache:
+  yarn: true
+  directories:
+    - node_modules
+install:
+  - yarn install
+script:
+  - yarn run test
 after_script:
   - npm install -g codecov
   - codecov
