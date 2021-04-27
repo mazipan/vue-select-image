@@ -1,41 +1,48 @@
 <template>
   <div :class="rootClass">
     <ul :class="`${rootClass}__wrapper`">
-      <li v-for="(dataImage, index) in dataImagesLocal" :key="index" :class="`${rootClass}__item`">
-        <div
-          :class="classThumbnail(singleSelected.id, dataImage.id, dataImage.disabled)"
-          @click="onSelectImage(dataImage)"
-          v-if="!isMultiple"
-        >
-          <img
-            :src="dataImage.src"
-            :alt="dataImage.alt"
-            :id="dataImage.id"
-            :height="h"
-            :width="w"
-            :class="`${rootClass}__img`"
-          />
+      <template v-if="dataImagesLocal.length > 0">
+        <li v-for="(dataImage, index) in dataImagesLocal" :key="index" :class="`${rootClass}__item`">
+          <div
+            :class="classThumbnail(singleSelected.id, dataImage.id, dataImage.disabled)"
+            @click="onSelectImage(dataImage)"
+            v-if="!isMultiple"
+          >
+            <img
+              :src="dataImage.src"
+              :alt="dataImage.alt"
+              :id="dataImage.id"
+              :height="h"
+              :width="w"
+              :class="`${rootClass}__img`"
+            />
 
-          <label :for="dataImage.id" v-if="useLabel" :class="`${rootClass}__lbl`">{{dataImage.alt}}</label>
-        </div>
+            <label :for="dataImage.id" v-if="useLabel" :class="`${rootClass}__lbl`">{{dataImage.alt}}</label>
+          </div>
 
-        <div
-          :class="classThumbnailMultiple(dataImage.id, dataImage.disabled)"
-          @click="onSelectMultipleImage(dataImage)"
-          v-if="isMultiple"
-        >
-          <img
-            :src="dataImage.src"
-            :alt="dataImage.alt"
-            :id="dataImage.id"
-            :height="h"
-            :width="w"
-            :class="`${rootClass}__img`"
-          />
+          <div
+            :class="classThumbnailMultiple(dataImage.id, dataImage.disabled)"
+            @click="onSelectMultipleImage(dataImage)"
+            v-if="isMultiple"
+          >
+            <img
+              :src="dataImage.src"
+              :alt="dataImage.alt"
+              :id="dataImage.id"
+              :height="h"
+              :width="w"
+              :class="`${rootClass}__img`"
+            />
 
-          <label :for="dataImage.id" v-if="useLabel" :class="`${rootClass}__lbl`">{{dataImage.alt}}</label>
-        </div>
-      </li>
+            <label :for="dataImage.id" v-if="useLabel" :class="`${rootClass}__lbl`">{{dataImage.alt}}</label>
+          </div>
+        </li>
+      </template>
+      <slot name="empty" v-else>
+        <li :class="`${rootClass}__item`">
+          <label :class="`${rootClass}__lbl`">No image available</label>
+        </li>
+      </slot>
     </ul>
   </div>
 </template>
